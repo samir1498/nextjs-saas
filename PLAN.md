@@ -1,6 +1,7 @@
 # Minimal SaaS App – Project Plan
 
 A minimal multi-tenant SaaS starter using:
+
 - **Next.js 15** (App Router)
 - **Clerk** for authentication + organization management
 - **Supabase** (PostgreSQL) as database
@@ -27,18 +28,21 @@ A minimal multi-tenant SaaS starter using:
 ## 🧱 Features & Modules
 
 ### 1. 🔐 Authentication (Clerk)
+
 - [x] Sign up / Sign in
 - [ ] Organization selection or creation on login
 - [ ] Extract user & organization from Clerk JWT
 - [ ] Middleware for route protection
 
 ### 2. 🏢 Multi-Tenancy (Org-based)
+
 - [ ] Each user belongs to a Clerk Organization
 - [ ] `organizationId` stored on all tenant data (e.g. projects)
 - [ ] Enforce data scoping per org in API routes
 - [ ] Protect against cross-org access
 
 ### 3. 🗄 Database (Supabase + Prisma)
+
 - [x] Supabase project + Postgres DB
 - [x] Prisma schema setup
 - [ ] Tables: User, Organization, Project
@@ -46,11 +50,13 @@ A minimal multi-tenant SaaS starter using:
 - [ ] Push schema to Supabase
 
 ### 4. 📊 Dashboard
+
 - [ ] Protected `/dashboard` route
 - [ ] Show user + org context
 - [ ] List projects for the current org
 
 ### 5. 📁 Project Module (Example Domain)
+
 - [ ] `Project` model: id, title, description, orgId
 - [ ] `/api/projects` CRUD endpoints
 - [ ] Project belongs to org (not user)
@@ -60,7 +66,7 @@ A minimal multi-tenant SaaS starter using:
 
 ## 📂 Directory Structure (Planned)
 
-```
+```text
 
 src/
 ├── app/
