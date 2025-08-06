@@ -9,7 +9,7 @@ const createOrganizationSchema = z.object({
   name: z.string().min(3, 'Organization name must be at least 3 characters'),
 })
 
-export async function createOrganization(_initialState: any,formData: FormData) {
+export async function createOrganization(_initialState: unknown,formData: FormData) {
   const { userId } = await auth()
   if (!userId) {
     return {
