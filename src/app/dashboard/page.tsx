@@ -5,10 +5,10 @@ import prisma from "@/lib/prisma"
 import { CreateOrgForm } from "./create-org-form"
 
 export default async function DashboardPage() {
-  await syncClerkUserToDB()
-
+  
   const { userId } = await auth()
   if (!userId) return null
+  await syncClerkUserToDB(userId)
 
   const user = await prisma.user.findUnique({
     where: { id: userId },
