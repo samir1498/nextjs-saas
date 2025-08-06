@@ -30,70 +30,68 @@ A minimal multi-tenant SaaS starter using:
 ### 1. 🔐 Authentication (Clerk)
 
 - [x] Sign up / Sign in
-- [ ] Organization selection or creation on login
-- [ ] Extract user & organization from Clerk JWT
-- [ ] Middleware for route protection
+- [x] Organization creation after login
+- [x] Extract user from Clerk JWT
+- [x] Middleware for route protection
 
 ### 2. 🏢 Multi-Tenancy (Org-based)
 
-- [ ] Each user belongs to a Clerk Organization
-- [ ] `organizationId` stored on all tenant data (e.g. projects)
+- [x] Users can belong to multiple organizations
+- [x] `organizationId` stored on all tenant data (e.g. projects)
 - [ ] Enforce data scoping per org in API routes
 - [ ] Protect against cross-org access
 
 ### 3. 🗄 Database (Supabase + Prisma)
 
 - [x] Supabase project + Postgres DB
-- [x] Prisma schema setup
-- [ ] Tables: User, Organization, Project
-- [ ] Sync Clerk data into local DB
-- [ ] Push schema to Supabase
+- [x] Prisma schema setup with many-to-many relationship between Users and Orgs
+- [x] Tables: User, Organization, Project, OrganizationsOnUsers
+- [x] Sync Clerk user data into local DB (on first visit to dashboard)
+- [x] Push schema to Supabase
 
 ### 4. 📊 Dashboard
 
-- [ ] Protected `/dashboard` route
-- [ ] Show user + org context
+- [x] Protected `/dashboard` route
+- [x] Show user context
+- [x] List organizations for the current user
+- [x] UI form to create organizations
 - [ ] List projects for the current org
 
 ### 5. 📁 Project Module (Example Domain)
 
-- [ ] `Project` model: id, title, description, orgId
+- [x] `Project` model: id, title, description, orgId
 - [ ] `/api/projects` CRUD endpoints
-- [ ] Project belongs to org (not user)
+- [x] Project belongs to org (not user)
 - [ ] UI form to create/update projects
 
 ---
 
-## 📂 Directory Structure (Planned)
+## 📂 Directory Structure (Actual)
 
 ```text
-
 src/
 ├── app/
 │   ├── dashboard/         # Protected UI
-│   ├── api/
-│   │   └── projects/      # Multi-tenant REST API
-│   └── layout.tsx         # ClerkProvider wrapper
-├── components/            # UI components
+│   │   ├── page.tsx
+│   │   ├── actions.ts
+│   │   └── create-org-form.tsx
+│   ├── layout.tsx         # ClerkProvider wrapper
+│   └── globals.css
 ├── lib/
-│   ├── prisma.ts          # Prisma client
-│   └── clerk.ts           # Clerk org/user utils
+│   ├── clerk-db-sync.ts   # Syncs Clerk user to local DB
+│   └── prisma.ts          # Prisma client
 ├── middleware.ts          # Clerk auth middleware
 prisma/
 └── schema.prisma
-
 ```
 
 ---
 
 ## 🔜 Next Steps
 
-- [ ] Create Next.js project with TypeScript, App Router, Tailwind
-- [ ] Install Clerk, Prisma, and configure `.env.local`
-- [ ] Initialize Prisma schema with multi-tenant models
-- [ ] Set up ClerkProvider and middleware
-- [ ] Build and test protected `/dashboard`
 - [ ] Implement `Project` API routes with org scoping
+- [ ] Build UI for creating and listing projects on the dashboard
+- [ ] Show full user and organization context in the dashboard
 
 ---
 
